@@ -1,0 +1,144 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id              String @id @default(cuid()) 
+  firstName       String?
+  lastName        String?
+  phoneNumber     String?
+  email           String?  @unique
+  role            Role?
+  disabled        Boolean?
+  avatar          String? @db.VarChar(9999)
+  hashedPassword  String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+
+  notification Notifications[]
+  activity Activity[]
+  tasks Tasks[]
+}
+
+model Tasks {
+  id              String @id @default(cuid())
+  name            String
+  phone           String
+  stage           Stage
+  status          TaskStatus
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  
+  deadline       DateTime?
+  creator        String?
+
+  userId         String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+
+  activity Activity[]
+  notification Notifications[]
+}
+
+
+model Activity {
+  id              String @id @default(cuid())
+
+  message         String
+
+
+  status          ActivityStatus
+  deadline        DateTime?
+
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  lostActivity    Boolean @default(false)
+
+  creator        String?
+
+  taskId         String
+  task Tasks @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  userId         String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum ActivityStatus {
+  activity
+  comment
+}
+
+enum TaskStatus {
+  none
+  won
+  sleep
+  lost
+}
+
+enum Stage {
+  new
+  offer
+  negotiations
+  reserved
+  contract
+}
+
+
+
+enum Role {
+  User
+  Spectator
+  Admin
+}
+
+
+model Notifications {
+  id  String @id @default(cuid())
+  message String
+  creator String
+
+
+
+
+
+  createdAt       DateTime @default(now())   
+  updatedAt       DateTime @updatedAt 
+
+
+  taskId         String?
+  task Tasks? @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  userId         String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+
+}
+
+
+model AllRooms {
+  id String @id @default(cuid())
+  balcony String?
+  m2 String?
+  floor Int?
+  soldOut Boolean?
+
+  createdAt       DateTime @default(now())   
+  updatedAt       DateTime @updatedAt 
+}
+
+// model Allfloors {
+//   id String @id @default(cuid())
+//   points String
+//   floor Int
+//   transform Int
+// }

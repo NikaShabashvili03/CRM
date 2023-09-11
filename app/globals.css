@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+span[data-title]:hover::after{
+    content: attr(data-title);
+    padding: 5px;
+    padding-right: 10px;
+    position: absolute;
+    padding-left: 10px;
+    background-color: gray;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: -20px;
+    overflow: visible;
+    top: -35px;
+    z-index: 20;
+    border-radius: 5px;
+  }
+  h1[data-title]:hover::after {
+    content: attr(data-title);
+    padding: 5px;
+    padding-right: 10px;
+    position: absolute;
+    padding-left: 10px;
+    background-color: gray;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: -70px;
+    width: 250px;
+    overflow: visible;
+    top: -45px;
+    z-index: 20;
+    border-radius: 5px;
+  }
+
+
+  /* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 20px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
