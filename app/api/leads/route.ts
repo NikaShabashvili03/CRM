@@ -19,6 +19,7 @@ export async function POST(
     stage,
     userId,
     phone,
+    email,
     creator,
    } = body;
 
@@ -34,6 +35,7 @@ export async function POST(
       stage: stage,
       status: 'none',
       phone: phone,
+      email: email,
       userId: userId,
       creator: creator,
     },

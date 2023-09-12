@@ -26,14 +26,15 @@ export default function TimeProvider({sleepLeads, activitys, currentUser}: any) 
                         status: 'none',
                         deadline: undefined
                     }).then(() => {
-                        toast.success("Lead Return Success")
+                        // toast.success("Lead Return Success")
                         axios.post("/api/notification", {
-                            message: `You Sleeped Lead Return :)`,
+                            title: 'Your Sleeped Lead Is Return',
+                            message: '',
+                            logo: 'sleepReturn',
                             userId: item.userId,
-                            creator: 'Kolos-Resort',
+                            creator: '',
                             taskId: item.id,
                         }).then(() => {
-                            toast.success("Notification has been created")
                             router.refresh();
                         })
                     })
@@ -50,15 +51,16 @@ export default function TimeProvider({sleepLeads, activitys, currentUser}: any) 
                         lost: true
                     })
                     .then(() => {
-                        toast.success("You lost activity on your lead")
-                        router.refresh();
+                        // toast.success("You lost activity on your lead")
                         axios.post("/api/notification", {
-                            message: `You Have Lost Activity`,
+                            title: 'You Missed The Activity Deadline',
+                            message: '',
+                            logo: 'missedDeadline',
                             userId: item.task.userId,
-                            creator: 'Kolos-Resort',
+                            creator: '',
                             taskId: item.taskId,
                         }).then(() => {
-                            toast.success("Not created")
+                            router.refresh();
                         })
                     })
                 }

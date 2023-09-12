@@ -2,12 +2,11 @@
   "name": "kolos-crm",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://crm.kolos.ge",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "export": "next export",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -38,6 +37,7 @@
     "react-hook-form": "^7.46.1",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^4.10.1",
+    "react-loader-spinner": "^5.4.5",
     "react-rainbow-components": "^1.32.0",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2",

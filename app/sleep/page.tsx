@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import getAllLeads from "../actions/getAllLeads";
 import getAllUser from "../actions/getAllUsers";
 import getCurrentUser from "../actions/getCurrentUser";
@@ -7,7 +8,7 @@ import SleepClient from "./SleepClient";
 import SleepOwner from "./SleepOwner";
 
 
-const WonPage = async ({params}: any) => {
+const SleepPage = async ({params}: any) => {
   const leads = await getLeads({status: 'sleep'})
   const currentUser = await getCurrentUser();
   const ownerLeads = await getAllLeads({status: 'sleep'});
@@ -23,6 +24,9 @@ const WonPage = async ({params}: any) => {
         </ClientOnly>
       )
   }
+  if(currentUser?.role == "Spectator"){
+    return redirect("/leads")
+  }
   return (
       <ClientOnly>
         <SleepClient leads={leads}/>
@@ -30,4 +34,4 @@ const WonPage = async ({params}: any) => {
   );
 }
  
-export default WonPage;
+export default SleepPage;

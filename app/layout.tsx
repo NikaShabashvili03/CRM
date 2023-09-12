@@ -36,19 +36,15 @@ export default async function RootLayout({
   const sleepLeads = await getAllLeads({status: 'sleep'});
   const AllLeads = await getAllLeads({status: 'none'})
  
-  // if(dateFormat(currentDate, "mmm d, yyyy, h:MM:ss TT") == dateFormat(item.deadline, "mmm d, yyyy, h:MM:ss TT")) {
-  //   axios.post(`/api/leads/status/${item.id}`, {
-  //     status: 'none',
-  //     deadline: undefined
-  //   }).then(() => {
-  //     toast.success("Lead Return Success")
-  //     router.refresh();
-  //   })
-  // }
   if(!currentUser){
     return (
       <html lang="en">
-        <body className={inter.className}><LoginClient/></body>
+        <body className={inter.className}>
+              <ClientOnly>
+                  <ToasterProvider/>
+                  <LoginClient/>
+              </ClientOnly>
+          </body>
       </html>
     )
   }

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 import prisma from "@/app/libs/prismadb";
 import getCurrentUser from "@/app/actions/getCurrentUser";
-
+import bcrypt from 'bcrypt'
 
 interface IParams {
     profileId?: string;
@@ -38,6 +38,7 @@ export async function POST(
   if (!profileId || typeof profileId !== 'string') {
     throw new Error('Invalid ID');
   }
+
 
   const allTasks = await prisma.user.updateMany({
     where: {

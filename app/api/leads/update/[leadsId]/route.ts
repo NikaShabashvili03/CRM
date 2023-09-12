@@ -25,6 +25,7 @@ export async function POST(
     userId,
     name,
     phone,
+    email,
    } = body;
 
   Object.keys(body).forEach((value: any) => {
@@ -44,6 +45,7 @@ export async function POST(
       phone: phone,
       name: name,
       userId: userId,
+      email: email,
     },
   })
 

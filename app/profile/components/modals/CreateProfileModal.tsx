@@ -67,7 +67,7 @@ const CreateProfileModal = ({currentUser}: any) => {
       password: data.password,
       email: data.email,
       role: data.role,
-      avatar: avatar.toString('base64'),
+      avatar: avatar ? avatar.toString('base64') : '',
     }).then(() => {
       toast.success("User is created")
       router.refresh();

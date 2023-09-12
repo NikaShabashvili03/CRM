@@ -10,6 +10,7 @@ import getCurrentUser from "../actions/getCurrentUser";
 import getAllLeads from "../actions/getAllLeads";
 import WonOwner from "./WonOwner";
 import getAllUser from "../actions/getAllUsers";
+import { redirect } from "next/navigation";
 
 
 const WonPage = async ({params}: any) => {
@@ -28,6 +29,9 @@ const WonPage = async ({params}: any) => {
         />
       </ClientOnly>
     )
+  }
+  if(currentUser?.role == "Spectator"){
+    return redirect("/leads")
   }
   return (
       <ClientOnly>

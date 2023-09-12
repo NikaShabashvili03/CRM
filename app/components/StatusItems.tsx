@@ -3,7 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import dateFormat from 'dateformat';
-
+import {BOARD_SECTIONS} from '@/app/leads/components/constants'
 export default function StatusItems({allLeads, bg}: any) {
   const router = useRouter()
   return (
@@ -20,7 +20,7 @@ export default function StatusItems({allLeads, bg}: any) {
               <span className={`${bg} text-white py-2 px-8 rounded-full text-1xl`}>{item.status}</span>
           </td>
           <td className="py-4 px-6 flex items-center border-b border-gray-200">
-            <h1 className='mr-12'>{item.stage}</h1>
+            <h1 className='mr-12'>{BOARD_SECTIONS[item.stage]}</h1>
             <button onClick={() => {
               axios.post(`/api/leads/status/${item.id}`, {
                 status: 'none',

@@ -97,17 +97,20 @@ export default function ActivityForm({
                             />
                           </div>
                       }
-                      <div className="w-full mt-5 h-[296px]">
+                      <div className="w-full relative mt-5 h-[296px]">
+                          <h1 className='absolute right-5 -top-5'>
+                            {data.message.length}/191
+                          </h1>
                           <div className="relative h-full w-full min-w-[200px]">
                             <textarea 
                               value={data.message}
                               onChange={(e) => {setData({deadline: data.deadline, message: e.target.value, status: status, id: data.id})}}
                               className="peer h-full w-full resize-none rounded-[7px] bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all  disabled:resize-none disabled:border-0 disabled:bg-blue-gray-50"
                               placeholder=" "
+                              maxLength={191}
                               required
                             ></textarea>
                           </div>
-                          
                       </div>
                       <div className="w-full flex h-[60px] bg-white items-center border-t border-gray-200">
                           <button onClick={() => {

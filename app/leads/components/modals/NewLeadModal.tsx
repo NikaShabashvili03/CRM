@@ -33,6 +33,7 @@ const NewLeadModal = () => {
         defaultValues: {
           name: '',
           phone: '',
+          email: '',
           id: ''
         },
   });
@@ -53,6 +54,7 @@ const NewLeadModal = () => {
       userId: selectedUser.id,
       name: data.name,
       phone: data.phone,
+      email: data.email,
       stage: 'new',
       creator: currentUser.firstName + " " + currentUser.lastName
     }).then(() => {
@@ -63,9 +65,11 @@ const NewLeadModal = () => {
     }) 
     if(selectedUser.id != currentUser.id){
       axios.post("/api/notification", {
-        message: `You Have new lead`,
+        title: 'You Have a New Lead',
+        message: ``,
+        logo: 'newLead',
         userId: selectedUser.id,
-        creator: currentUser.firstName
+        creator: currentUser.firstName + " " + currentUser.lastName
       }).then(() => {
         toast.success("Notification has been created")
       })
@@ -91,6 +95,14 @@ const NewLeadModal = () => {
         register={register}
         errors={errors}
         required
+      />
+      <Input
+        id="email"
+        label={'Email'}
+        type="email"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
       />
       {currentUser.role == "Admin" ?
           allUsers && (

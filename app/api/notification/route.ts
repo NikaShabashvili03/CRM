@@ -15,6 +15,8 @@ export async function POST(
 
   const body = await request.json();
   const { 
+    title,
+    logo,
     message,
     creator,
     userId,
@@ -29,6 +31,8 @@ export async function POST(
 
   const allTasks = await prisma.notifications.create({
     data: {
+      title: title,
+      logo: logo,
       message: message,
       creator: creator,
       userId: userId,

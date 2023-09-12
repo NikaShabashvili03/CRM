@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import getAllLeads from "../actions/getAllLeads";
 import getAllUser from "../actions/getAllUsers";
 import getCurrentUser from "../actions/getCurrentUser";
@@ -22,6 +23,9 @@ const LostPage = async ({params}: any) => {
         />
       </ClientOnly>
     )
+  }
+  if(currentUser?.role == "Spectator"){
+    return redirect("/leads")
   }
   return (
       <ClientOnly>
