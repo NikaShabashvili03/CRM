@@ -1,0 +1,131 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id              String @id @default(cuid()) 
+  firstName       String?
+  lastName        String?
+  phoneNumber     String?
+  email           String?  @unique
+  role            Role?
+  disabled        Boolean?
+  avatar          String?  @db.VarChar(65535)
+  hashedPassword  String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+
+  notification Notifications[]
+  activity Activity[]
+  tasks Tasks[]
+}
+
+model Tasks {
+  id              String @id @default(cuid())
+  name            String
+  phone           String
+  stage           Stage
+  status          TaskStatus
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  
+  deadline       DateTime?
+  creator        String?
+
+  userId         String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  email          String?
+
+  activity Activity[]
+  notification Notifications[]
+}
+
+
+model Activity {
+  id              String @id @default(cuid())
+
+  message         String
+
+
+  status          ActivityStatus
+  deadline        DateTime?
+
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  lostActivity    Boolean @default(false)
+
+  creator        String?
+
+  taskId         String
+  task Tasks @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  userId         String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum ActivityStatus {
+  activity
+  comment
+}
+
+enum TaskStatus {
+  none
+  won
+  sleep
+  lost
+}
+
+enum Stage {
+  new
+  offer
+  negotiations
+  reserved
+  contract
+}
+
+
+
+enum Role {
+  User
+  Admin
+  Spectator
+}
+
+model Notifications {
+  id  String @id @default(cuid())
+  title String
+  message String?
+  creator String
+  logo NotificationLogo
+
+
+
+
+  createdAt       DateTime @default(now())   
+  updatedAt       DateTime @updatedAt 
+
+
+  taskId         String?
+  task Tasks? @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  userId         String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+
+}
+
+enum NotificationLogo {
+    missedDeadline
+    sleepReturn
+    newMessage
+    newActivity
+    newLead
+}

@@ -53,24 +53,19 @@ const EditProfileModal = ({currentUser}: any) => {
 
   function covertToBase64(e: any){
     var render = new FileReader();
-    if(e.target.files[0].size <= 350000){
-      render.readAsDataURL(e.target.files[0])
-      render.onload = () => {
-        setData({
-          avatar: render.result, 
-          firstName: data.firstName, 
-          lastName: data.lastName, 
-          phoneNumber: data.phoneNumber, 
-          email: user.email,
-          role: data.role
-        })
-      }
-      render.onerror = (error: any) => {
-        toast.error("Error :", error)
-      }
+    render.readAsDataURL(e.target.files[0])
+    render.onload = () => {
+      setData({
+        avatar: render.result, 
+        firstName: data.firstName, 
+        lastName: data.lastName, 
+        phoneNumber: data.phoneNumber, 
+        email: user.email,
+        role: data.role
+      })
     }
-    else{
-      toast.error("Your file is more then database")
+    render.onerror = (error: any) => {
+      toast.error("Error :", error)
     }
   }
   const onSubmit:SubmitHandler<FieldValues> = () => {
