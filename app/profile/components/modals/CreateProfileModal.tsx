@@ -45,21 +45,16 @@ const CreateProfileModal = ({currentUser}: any) => {
 
   function covertToBase64(e: any){
     var render = new FileReader();
-    if(e.target.files[0].size <= 350000){
-      render.readAsDataURL(e.target.files[0])
-      render.onload = () => {
-        setAvatar(render.result)
-      }
-      render.onerror = (error: any) => {
-        toast.error("Error :", error)
-      }
+
+    render.readAsDataURL(e.target.files[0])
+    render.onload = () => {
+      setAvatar(render.result)
     }
-    else{
-      toast.error("Your file is more then database")
+    render.onerror = (error: any) => {
+      toast.error("Error :", error)
     }
   }
   const onSubmit:SubmitHandler<FieldValues> = (data) => {
-    console.log(data)
     axios.post(`/api/profile`, {
       firstName: data.firstName,
       lastName: data.lastName,

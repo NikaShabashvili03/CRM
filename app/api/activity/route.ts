@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 import prisma from "@/app/libs/prismadb";
 import getCurrentUser from "@/app/actions/getCurrentUser";
+import { pusherServer } from "@/app/libs/pusher";
 
 
 export async function POST(
@@ -36,6 +37,7 @@ export async function POST(
       deadline: deadline,
     },
   })
+
 
   return NextResponse.json(allActivity);
 }

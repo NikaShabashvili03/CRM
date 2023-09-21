@@ -29,7 +29,7 @@ export async function POST(
     }
   });
 
-  const allTasks = await prisma.notifications.create({
+  const allNotifications = await prisma.notifications.create({
     data: {
       title: title,
       logo: logo,
@@ -40,7 +40,7 @@ export async function POST(
     },
   })
 
-  return NextResponse.json(allTasks);
+  return NextResponse.json(allNotifications);
 }
 
 

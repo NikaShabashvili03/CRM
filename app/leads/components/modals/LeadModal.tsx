@@ -9,6 +9,7 @@ import ActivityForm from '../activity/ActivityForm';
 import useEditModal from "@/app/hooks/useEditModal";
 import ActivityContainer from "../activity/ActivityContainer";
 import LeadsInfo from "../LeadsInfo";
+import toast from "react-hot-toast";
 
 const LeadModal = ({activitys}: any) => {
   const [confetti, setConfetti] = useState(false)
@@ -136,7 +137,7 @@ const LeadModal = ({activitys}: any) => {
           setConfetti={setConfetti}
           sleepDeadlineModal={sleepDeadlineModal}
           setSleepDeadlineModal={setSleepDeadlineModal}
-          setLeadDeadline={setSleepDeadlineModal}
+          setLeadDeadline={setLeadDeadline}
           leadDeadline={leadDeadline}
           statusChange={statusChange}
           setActivityModal={setActivityModal}

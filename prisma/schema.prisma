@@ -3,20 +3,20 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 
 model User {
-  id              String @id @default(cuid()) 
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
   firstName       String?
   lastName        String?
   phoneNumber     String?
   email           String?  @unique
   role            Role?
   disabled        Boolean?
-  avatar          String?  @db.VarChar(65535)
+  avatar          String?  
   hashedPassword  String?
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
@@ -28,7 +28,7 @@ model User {
 }
 
 model Tasks {
-  id              String @id @default(cuid())
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
   name            String
   phone           String
   stage           Stage
@@ -51,7 +51,7 @@ model Tasks {
 
 
 model Activity {
-  id              String @id @default(cuid())
+  id              String @id @default(auto()) @map("_id") @db.ObjectId
 
   message         String
 
@@ -101,7 +101,7 @@ enum Role {
 }
 
 model Notifications {
-  id  String @id @default(cuid())
+  id  String @id @default(auto()) @map("_id") @db.ObjectId
   title String
   message String?
   creator String

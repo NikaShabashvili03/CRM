@@ -15,10 +15,13 @@ import Input from './components/inputs/input';
 import Button from './components/Button';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
+import useCreateProfileModal from './hooks/useCreateProfileModal';
+
 
 
 const LoginClient: NextPage = (): JSX.Element => {
   const router = useRouter();
+  // const createmodal = useCreateProfileModal();
   const [isLoading, setLoading] = useState(false);
   const { 
     register, 
@@ -86,6 +89,25 @@ const LoginClient: NextPage = (): JSX.Element => {
                   <div className='w-full mt-12'>
                     <Button big label='Sign in' onClick={handleSubmit(onSubmit)}/>
                   </div>
+                </div>
+
+                    {/* Register button  */}
+
+                    {/* <button onClick={() => {
+                      createmodal.onOpen()
+                    }}>Register</button> */}
+
+                    {/* Users */}
+                <div className='flex flex-col'>
+                    <h1 className='font-bold'>Admin</h1>
+                    <p>email: <i>Admin@mail.com</i></p>
+                    <p> password: <i>admin</i></p>
+                    <h1 className='font-bold'>User</h1>
+                    <p>email: <i>User@mail.com</i></p>
+                    <p>password: <i>user</i></p>
+                    <h1 className='font-bold'>Spectator</h1>
+                    <p>email: <i>Spectator@mail.com</i></p>
+                    <p>password: <i>spectator</i></p>
                 </div>
               </div>
             </div>

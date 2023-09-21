@@ -15,6 +15,7 @@ import getAllLeads from './actions/getAllLeads'
 import getAllUser from './actions/getAllUsers'
 import { useEffect, useState } from 'react'
 import TimeProvider from './providers/TimeProvider'
+import CreateProfileModal from './profile/components/modals/CreateProfileModal'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -42,13 +43,32 @@ export default async function RootLayout({
         <body className={inter.className}>
               <ClientOnly>
                   <ToasterProvider/>
+                  <CreateProfileModal currentUser={currentUser}/>
                   <LoginClient/>
               </ClientOnly>
           </body>
       </html>
     )
   }
-  if(currentUser.role == "Admin" || currentUser.role == "User"){
+  if(currentUser.role == "Admin"){
+    return (
+      <html lang="en">
+        <body className={inter.className}>
+          <ClientOnly>
+            <TimeProvider currentUser={currentUser} activitys={activitys} sleepLeads={sleepLeads}/>
+            <ToasterProvider/>
+            <ModalsProvider currentUser={currentUser} allUser={allUser} notifications={notifications} activitys={activitys}/>
+            <Navbar notifications={notifications.length}/>
+            <Sidebar
+              currentUser={currentUser}
+            >{children}</Sidebar> 
+          </ClientOnly>
+        </body>
+      </html>
+    )
+  }
+
+  if(currentUser.role == "User"){
     return (
       <html lang="en">
         <body className={inter.className}>
