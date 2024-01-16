@@ -99,7 +99,7 @@ const LoginClient: NextPage = (): JSX.Element => {
                       }}>Register</button>
                 </div> */}
                     {/* Users */}
-                <div className='flex flex-col'>
+                <div className='flex flex-col md:flex-col'>
                     <h1 className='font-bold'>Admin</h1>
                     <p>email: <i>Admin@mail.com</i></p>
                     <p> password: <i>admin</i></p>
