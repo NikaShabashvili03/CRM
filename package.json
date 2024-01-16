@@ -1,9 +1,9 @@
 {
-  "name": "kolos-crm",
+  "name": "crm",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
     "dev": "next dev",
     "build": "next build",
     "export": "next export",
@@ -25,7 +25,6 @@
     "bcrypt": "^5.1.0",
     "date-fns": "^2.30.0",
     "dateformat": "^5.0.3",
-    "dnd-kit": "^0.0.1",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
     "next": "13.4.19",

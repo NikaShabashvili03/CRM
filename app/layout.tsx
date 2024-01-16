@@ -50,6 +50,7 @@ export default async function RootLayout({
       </html>
     )
   }
+  
   if(currentUser.role == "Admin"){
     return (
       <html lang="en">

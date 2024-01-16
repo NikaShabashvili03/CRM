@@ -21,7 +21,7 @@ import useCreateProfileModal from './hooks/useCreateProfileModal';
 
 const LoginClient: NextPage = (): JSX.Element => {
   const router = useRouter();
-  // const createmodal = useCreateProfileModal();
+  const createmodal = useCreateProfileModal();
   const [isLoading, setLoading] = useState(false);
   const { 
     register, 
@@ -93,10 +93,11 @@ const LoginClient: NextPage = (): JSX.Element => {
 
                     {/* Register button  */}
 
-                    {/* <button onClick={() => {
-                      createmodal.onOpen()
-                    }}>Register</button> */}
-
+                {/* <div className='w-full flex justify-center items-center'>
+                  <button className='py-2 px-4 my-2 rounded-xl hover:bg-blue-400 bg-blue-300 self-center' onClick={() => {
+                        createmodal.onOpen()
+                      }}>Register</button>
+                </div> */}
                     {/* Users */}
                 <div className='flex flex-col'>
                     <h1 className='font-bold'>Admin</h1>

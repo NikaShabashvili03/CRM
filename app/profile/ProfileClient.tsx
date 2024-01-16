@@ -15,12 +15,12 @@ export default function ProfileClient({currentUser}: any) {
                 <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                   {currentUser.role == 'User' ? (
                        <div className="relative mt-12 w-32 h-32">
-                        <img src={currentUser.avatar} className="shadow-xl rounded-full w-full h-full align-middle border-none absolute max-w-150-px"/>
+                        <img src={currentUser.avatar} className="shadow-xl rounded-full w-full h-full align-middle border-none absolute max-w-150-px" alt='img'/>
                       </div>
                   ) : (
                     <>
                       <div className="absolute left-[45%] -top-12 mt-12 w-32 h-32">
-                        <img src={currentUser.avatar} className="shadow-xl rounded-full w-full h-full align-middle border-none absolute max-w-150-px"/>
+                        <img alt='img' src={currentUser.avatar} className="shadow-xl rounded-full w-full h-full align-middle border-none absolute max-w-150-px"/>
                       </div>
                     </>
                   )}

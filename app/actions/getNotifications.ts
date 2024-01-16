@@ -27,7 +27,7 @@ export default async function getNotifications(
       }
     });
 
-    const safeAllNotifications = AllNotifications.map((leads) => ({
+    const safeAllNotifications = AllNotifications.map((leads: any) => ({
       ...leads,
       createdAt: leads.createdAt.toISOString(),
     }));

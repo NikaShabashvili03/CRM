@@ -263,7 +263,7 @@ export default async function getActivity(
       }
     });
 
-    const safeAllLeads = AllLeads.map((leads) => ({
+    const safeAllLeads = AllLeads.map((leads: any) => ({
       ...leads,
       createdAt: leads.createdAt.toISOString(),
     }));

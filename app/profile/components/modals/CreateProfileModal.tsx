@@ -75,7 +75,7 @@ const CreateProfileModal = ({currentUser}: any) => {
   let bodyContent = (
     <div className="flex flex-col gap-8">
       <div className='relative w-32 self-center h-32 flex rounded-full justify-center items-center'>
-         <img className='w-full h-full bg-gray-300 rounded-full' src={avatar}></img>
+         <img className='w-full h-full bg-gray-300 rounded-full' src={avatar} alt='profile'/>
          <AiOutlineFileImage size={40} className={`absolute ${avatar && 'hidden'}`}/>
          <input 
           onChange={covertToBase64} 
