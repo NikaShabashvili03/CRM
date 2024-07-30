@@ -16,6 +16,7 @@ import getAllUser from './actions/getAllUsers'
 import { useEffect, useState } from 'react'
 import TimeProvider from './providers/TimeProvider'
 import CreateProfileModal from './profile/components/modals/CreateProfileModal'
+import useCreateProfileModal from './hooks/useCreateProfileModal'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -36,14 +37,15 @@ export default async function RootLayout({
   const allUser = await getAllUser();
   const sleepLeads = await getAllLeads({status: 'sleep'});
   const AllLeads = await getAllLeads({status: 'none'})
- 
+
   if(!currentUser){
     return (
       <html lang="en">
         <body className={inter.className}>
               <ClientOnly>
                   <ToasterProvider/>
-                  <CreateProfileModal currentUser={currentUser}/>
+                  <CreateProfileModal/>
+                  
                   <LoginClient/>
               </ClientOnly>
           </body>

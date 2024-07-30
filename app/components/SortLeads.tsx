@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import useNewLeadModal from '../hooks/useNewLeadModal';
-import { AiOutlineUserSwitch, AiOutlineClear } from 'react-icons/ai'
+import { AiOutlineClear } from 'react-icons/ai'
 import NewLeadButton from './NewLeadButton';
 
 export default function SortLeads({setLeads, allUser, allLeads, currentUser, status}: any) {

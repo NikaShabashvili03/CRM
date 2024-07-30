@@ -17,7 +17,7 @@ import useCreateProfileModal from '@/app/hooks/useCreateProfileModal';
 import { AiOutlineFileImage } from 'react-icons/ai';
 
 
-const CreateProfileModal = ({currentUser}: any) => {
+const CreateProfileModal = () => {
   const {
     onClose,
     isOpen,
